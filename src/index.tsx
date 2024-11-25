@@ -3,7 +3,7 @@ import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import InputPage from './components/InputPage';
 import ConfirmationPage from './components/ConfirmationPage';
 
-const App: React.FC = () => {
+const App = () => {
   return (
     <Router>
       <Routes>

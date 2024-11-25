@@ -9,7 +9,7 @@ interface LocationState {
 function ConfirmationPage() {
   const location = useLocation();
   const navigate = useNavigate();
-  const { email, text } = location.state || { email: '', text: '' };
+  const { email, text } = (location.state as LocationState) || { email: '', text: '' };
 
   const goBack = () => {
     navigate('/');

@@ -1,15 +1,10 @@
 import React from 'react';
-import { useLocation, useNavigate } from 'react-router-dom';
-
-interface LocationState {
-    email: string;
-    text: string;
-}
+import { useNavigate } from 'react-router-dom';
+import { useUserContext } from '../userContext';
 
 function ConfirmationPage() {
-  const location = useLocation();
   const navigate = useNavigate();
-  const { email, text } = (location.state as LocationState) || { email: '', text: '' };
+  const { userData } = useUserContext();
 
   const goBack = () => {
     navigate('/');
@@ -19,8 +14,8 @@ function ConfirmationPage() {
     <div style={{ padding: '20px' }}>
       <h1>確認ページ</h1>
       <div>
-        <p><strong>メールアドレス:</strong> {email}</p>
-        <p><strong>メインテキスト:</strong> {text}</p>
+        <p><strong>メールアドレス:</strong> {userData.email}</p>
+        <p><strong>メインテキスト:</strong> {userData.text}</p>
       </div>
       <button onClick={goBack}>戻る</button>
     </div>

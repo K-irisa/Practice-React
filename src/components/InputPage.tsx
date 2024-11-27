@@ -1,13 +1,13 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { useNavigate } from 'react-router-dom';
+import { useUserContext } from '../userContext';
 
 function InputPage() {
-  const [email, setEmail] = useState<string>('');
-  const [text, setText] = useState<string>('');
   const navigate = useNavigate();
+  const { userData, setUserData } = useUserContext();
 
   const handleSubmit = () => {
-    navigate('/confirm', { state: { email, text } });
+    navigate('/confirm');
   };
 
   return (
@@ -18,8 +18,8 @@ function InputPage() {
           メールアドレス:
           <input
             type="email"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
+            value={userData.email}
+            onChange={(e) => setUserData({ ...userData, email: e.target.value })}
             required
             style={{ display: 'block', margin: '10px 0' }}
           />
@@ -29,8 +29,8 @@ function InputPage() {
         <label>
           メインテキスト:
           <textarea
-            value={text}
-            onChange={(e) => setText(e.target.value)}
+            value={userData.text}
+            onChange={(e) => setUserData({ ...userData, text: e.target.value })}
             required
             style={{ display: 'block', margin: '10px 0' }}
           />
